@@ -1,0 +1,147 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="bista_training.list">
+      <field name="name">bista_training list</field>
+      <field name="model">bista_training.bista_training</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+           <field name="date"/>
+          <field name="value"/>
+
+        </tree>
+      </field>
+    </record>
+
+    <!-- explicit form view definition -->
+        <record  model="ir.ui.view" id="bista_training.form">
+            <field name="name">bista_training form</field>
+            <field name="model">bista_training.bista_training</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+
+                            <group>
+                                <field name="name" required="1"/>
+
+                            </group>
+
+                            <group>
+                              <field name="date"/>
+                              <field name="value" readonly="1" string="Value2"/>
+                            </group>
+
+                        </group>
+                        <notebook>
+                            <page string="Trainee">
+                                <field name="trainee_ids">
+                                    <tree sting="Trainee" editable="bottom">
+                                        <field name="name"/>
+                                        <field name="email"/>
+                                    </tree>
+
+                                </field>
+
+                            </page>
+                            <page string="Training Schedules">
+
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+
+
+          <record model="ir.ui.view" id="bista_bista_trainee_form">
+            <field name="name">bista_trainee form</field>
+            <field name="model">bista.trainee</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_employed" string="Confirm" type="object" />
+                    <field name="state" widget="statusbar" statusbar_visible="new,employed"/>
+                    </header>
+                    <sheet>
+                        <field name="image_1920" widget="image" class="oe_avatar" />
+                        <group>
+                        <group>
+
+                            <field name="trainee_id" readonly="1"/>
+                            <field name="name"/>
+                        </group>
+                            <group>
+                                <field name="email"/>
+                                <field name="email_2"/>
+                                <field name="training_batch_id"/>
+                            </group>
+                        </group>
+
+
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="bista_training.action_window">
+      <field name="name">bista_training window</field>
+      <field name="res_model">bista_training.bista_training</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+      <record model="ir.actions.act_window" id="bista_training.action_trainee_master">
+      <field name="name">Bista Trainees</field>
+      <field name="res_model">bista.trainee</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="bista_training.action_server">
+      <field name="name">bista_training server</field>
+      <field name="model_id" ref="model_bista_training_bista_training"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+
+    <menuitem name="Bista Training" id="bista_training.menu_root"
+              web_icon="bista_training,static/description/icon.png"
+              />
+
+    <!-- menu categories -->
+
+    <menuitem name="Training" id="bista_training.menu_1" parent="bista_training.menu_root"/>
+<!--    <menuitem name="Menu 2" id="bista_training.menu_2" parent="bista_training.menu_root"/>
+-->
+    <!-- actions -->
+
+    <menuitem name="Training Details" id="bista_training.menu_1_list" parent="bista_training.menu_1"
+              action="bista_training.action_window"/>
+
+         <menuitem name="Trainee" id="bista_training.menu_trainee_menu" parent="bista_training.menu_1"
+              action="bista_training.action_trainee_master"/>
+ <!--   <menuitem name="Server to list" id="bista_training" parent="bista_training.menu_2"
+              action="bista_training.action_server"/>
+-->
+  </data>
+</odoo>
