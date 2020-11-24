@@ -1,0 +1,23 @@
+git clone
+#this help to clone a remote repo to your local
+
+git branch
+#Help to see which branch we are currently in
+
+git checkout -b <YOUR BRANCH NAME>
+#Helps to create a new branch as yourown
+
+git checkout <BRANCH NAME>
+#Helps to swith the branch
+
+git add
+#Helps to add our changes to the Git stage
+
+git commit -m "<MESSAGE /WHAT WE HAVE UPDATED WITH THIS COMMIT>""
+#Helps team members/other coders to identify what we have done in the code.
+
+git push origin <BRANCH_NAME>
+#To push our code from Local to Remote git server
+
+git pull origin <BRANCH_NAME>
+#To keep your local code uptodate with the remote repo code
